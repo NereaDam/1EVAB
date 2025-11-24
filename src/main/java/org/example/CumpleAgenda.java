@@ -1,12 +1,12 @@
 package org.example;
 
-public class cumpleAgenda {
+public class CumpleAgenda {
 
     private String Nombre;
     private int Dia;
     private int Mes;
 
-    public cumpleAgenda(String nombre, int dia, int mes) {
+    public CumpleAgenda(String nombre, int dia, int mes) {
         this.Nombre = nombre;
         this.Dia = dia;
         this.Mes = mes;
