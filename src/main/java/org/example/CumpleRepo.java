@@ -3,7 +3,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
-public class cumpleRepo {
+public class CumpleRepo {
 
     private List<cumpleAgenda> Lista = new ArrayList<>();
 
