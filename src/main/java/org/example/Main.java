@@ -2,11 +2,11 @@ package org.example;
 
 import java.util.Scanner;
 
-public class main {
+public class Main {
 
     public static void main(String[] args) {
 
-        cumpleRepo repo = new cumpleRepo();
+        CumpleRepo repo = new CumpleRepo();
         Scanner sc = new Scanner(System.in);
         boolean salir = false;
 
@@ -23,7 +23,7 @@ public class main {
 
             switch (opcion) {
                 case "1":
-                    for (cumpleAgenda c : repo.GetLista()) {
+                    for (CumpleAgenda c : repo.GetLista()) {
                         System.out.println(c.GetNombre());
                     }
                     break;
@@ -31,14 +31,14 @@ public class main {
                 case "2":
                     System.out.print("Día: ");
                     int dia = Integer.parseInt(sc.nextLine());
-                    for (cumpleAgenda c : repo.BuscarPorDia(dia)) {
+                    for (CumpleAgenda c : repo.BuscarPorDia(dia)) {
                         System.out.println(c.GetNombre());
                     }
                     break;
 
                 case "3":
                     System.out.print("Nombre: ");
-                    cumpleAgenda c = repo.BuscarPorNombre(sc.nextLine());
+                    CumpleAgenda c = repo.BuscarPorNombre(sc.nextLine());
                     if (c != null) System.out.println(c.GetNombre());
                     break;
 
@@ -49,7 +49,7 @@ public class main {
                     int d = Integer.parseInt(sc.nextLine());
                     System.out.print("Mes: ");
                     int m = Integer.parseInt(sc.nextLine());
-                    repo.AddCumple(new cumpleAgenda(nombre, d, m));
+                    repo.AddCumple(new CumpleAgenda(nombre, d, m));
                     break;
 
                 case "5":
