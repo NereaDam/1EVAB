@@ -5,7 +5,7 @@ import java.util.List;
 
 public class CumpleRepo {
 
-    private List<CumpleAgenda> Lista = new ArrayList<>();
+    private final List<CumpleAgenda> Lista = new ArrayList<>();
 
     public List<CumpleAgenda> GetLista() {
         return Lista;
