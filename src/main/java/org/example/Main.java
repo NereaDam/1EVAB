@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -11,50 +12,29 @@ public class Main {
         boolean salir = false;
 
         while (!salir) {
-            System.out.println("\n=== AGENDA ===");
-            System.out.println("1. Listar");
-            System.out.println("2. Buscar por día");
-            System.out.println("3. Buscar por nombre");
-            System.out.println("4. Añadir");
-            System.out.println("5. Eliminar");
-            System.out.println("6. Salir");
+            opcionesMenu();
 
             String opcion = sc.nextLine();
 
             switch (opcion) {
                 case "1":
-                    for (CumpleAgenda c : repo.GetLista()) {
-                        System.out.println(c.GetNombre());
-                    }
+                    listar(repo.GetLista());
                     break;
 
                 case "2":
-                    System.out.print("Día: ");
-                    int dia = Integer.parseInt(sc.nextLine());
-                    for (CumpleAgenda c : repo.BuscarPorDia(dia)) {
-                        System.out.println(c.GetNombre());
-                    }
+                    buscarPorDia(sc, repo);
                     break;
 
                 case "3":
-                    System.out.print("Nombre: ");
-                    CumpleAgenda c = repo.BuscarPorNombre(sc.nextLine());
-                    if (c != null) System.out.println(c.GetNombre());
+                    buscarPorNombre(repo, sc);
                     break;
 
                 case "4":
-                    System.out.print("Nombre: ");
-                    String nombre = sc.nextLine();
-                    System.out.print("Día: ");
-                    int d = Integer.parseInt(sc.nextLine());
-                    System.out.print("Mes: ");
-                    int m = Integer.parseInt(sc.nextLine());
-                    repo.AddCumple(new CumpleAgenda(nombre, d, m));
+                    aniadir(sc, repo);
                     break;
 
                 case "5":
-                    System.out.print("Eliminar nombre: ");
-                    repo.EliminarPorNombre(sc.nextLine());
+                    eliminarNombre(repo, sc);
                     break;
 
                 case "6":
@@ -63,4 +43,48 @@ public class Main {
             }
         }
     }
+
+    private static void opcionesMenu() {
+        System.out.println(Constantes.AGENDA);
+        System.out.println(Constantes.LISTAR);
+        System.out.println(Constantes.BUSCAR_POR_DIA);
+        System.out.println(Constantes.BUSCAR_POR_NOMBRE);
+        System.out.println(Constantes.ANIADIR);
+        System.out.println(Constantes.ELIMINAR);
+        System.out.println(Constantes.SALIR);
+    }
+
+    private static void eliminarNombre(CumpleRepo repo, Scanner sc) {
+        System.out.print(Constantes.ELIMINAR_NOMBRE);
+        repo.EliminarPorNombre(sc.nextLine());
+    }
+
+    private static void aniadir(Scanner sc, CumpleRepo repo) {
+        System.out.print(Constantes.NOMBRE);
+        String nombre = sc.nextLine();
+        System.out.print(Constantes.DIA);
+        int d = Integer.parseInt(sc.nextLine());
+        System.out.print(Constantes.MES);
+        int m = Integer.parseInt(sc.nextLine());
+        repo.AddCumple(new CumpleAgenda(nombre, d, m));
+    }
+
+    private static void listar(List<CumpleAgenda> repo) {
+        for (CumpleAgenda c : repo) {
+            System.out.println(c.GetNombre());
+        }
+    }
+
+    private static void buscarPorNombre(CumpleRepo repo, Scanner sc) {
+        System.out.print(Constantes.NOMBRE);
+        CumpleAgenda c = repo.BuscarPorNombre(sc.nextLine());
+        if (c != null) System.out.println(c.GetNombre());
+    }
+
+    private static void buscarPorDia(Scanner sc, CumpleRepo repo) {
+        System.out.print(Constantes.DIA);
+        int dia = Integer.parseInt(sc.nextLine());
+        listar(repo.BuscarPorDia(dia));
+    }
 }
+
